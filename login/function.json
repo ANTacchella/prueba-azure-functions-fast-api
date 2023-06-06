@@ -8,8 +8,7 @@
       "name": "req",
       "methods": [
         "post"
-      ],
-      "route": "login"
+      ]
     },
     {
       "type": "http",
