@@ -14,18 +14,15 @@ class User(BaseModel):
     username: str
     password: str
 
-# Create a user
-user = User(username="Azure", password="Azure")
-
 # Define a login endpoint
 @app.post("/login")
 async def login(user: User):
     # Check if the user exists in the database
-    if not User.get(username=user.username):
+    if not user.username == "Azure":
         raise HTTPException(status_code=401, detail="Invalid username or password")
 
     # Check if the user's password is correct
-    if not user.password == User.get(username=user.username).password:
+    if not user.password == "Azure":
         raise HTTPException(status_code=401, detail="Invalid username or password")
 
     # Create a token for the user
