@@ -1,13 +1,9 @@
 import azure.functions as func
 
-from fastapi import FastAPI, Depends, HTTPException
-from fastapi.security import OAuth2PasswordBearer
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
 app = FastAPI()
-
-# Create an OAuth2PasswordBearer security scheme
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/token")
 
 # Define a user model
 class User(BaseModel):
@@ -16,7 +12,7 @@ class User(BaseModel):
 
 # Define a login endpoint
 @app.post("/login")
-async def login(user: User, oauth2_scheme: OAuth2PasswordBearer = Depends()):
+async def login(user: User):
     # Check if the user exists in the database
     if not user.username == "Azure":
         raise HTTPException(status_code=401, detail="Invalid username or password")
@@ -25,11 +21,8 @@ async def login(user: User, oauth2_scheme: OAuth2PasswordBearer = Depends()):
     if not user.password == "Azure":
         raise HTTPException(status_code=401, detail="Invalid username or password")
 
-    # Create a token for the user
-    token = oauth2_scheme.create_access_token(user.username)
-
     # Return the token
-    return {"access_token": token}
+    return {"access_token": 123}
 
 
 async def main(req: func.HttpRequest, context: func.Context) -> func.HttpResponse:
