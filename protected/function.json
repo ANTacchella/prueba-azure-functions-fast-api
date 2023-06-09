@@ -1,5 +1,5 @@
 {
-  "scriptFile": "login.py",
+  "scriptFile": "protected.py",
   "bindings": [
     {
       "authLevel": "anonymous",
@@ -7,9 +7,9 @@
       "direction": "in",
       "name": "req",
       "methods": [
-        "post"
+        "get"
       ],
-      "route": "login"
+      "route": "protected"
     },
     {
       "type": "http",

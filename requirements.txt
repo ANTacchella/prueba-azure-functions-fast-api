@@ -5,3 +5,5 @@
 azure-functions
 fastapi
 pydantic
+python-jose
+passlib[bcrypt]
